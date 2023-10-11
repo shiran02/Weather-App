@@ -37,13 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   late Future<WetherForecastModel> forecastObject;
-  String _cityname = "kandy";
+  String _cityName = "kandy";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    forecastObject = Network().getWeatherForecast(cityName: _cityname);
+    forecastObject = getWeather(cityName :_cityName);
 
     forecastObject.then((weather){
       print(weather.list![0].weather?[0].main);
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: ListView(
         children: [
-          textField(),
+          textField2(),
           
           Container(
               child: FutureBuilder<WetherForecastModel>(
@@ -79,4 +79,40 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
+  Widget textField2(){
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: TextField(
+      decoration: InputDecoration(
+        // filled: true,
+        // fillColor: Colors.blueAccent,
+        hintText: "Search city",
+        prefixIcon: const Icon(Icons.search,color: Colors.blue,),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            width: 4,
+            color: Colors.blue
+          ),
+          borderRadius: BorderRadius.circular(12),
+          
+          
+          
+        )
+      ),
+      onSubmitted: (value){
+        setState((){
+          _cityName = value;
+          forecastObject = getWeather(cityName :_cityName);
+        });
+      },
+    ),
+  );
 }
+
+  Future<WetherForecastModel> getWeather({required String cityName}) => 
+  new Network().getWeatherForecast(cityName: _cityName);
+}
+
+
