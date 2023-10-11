@@ -103,7 +103,7 @@ class Lista {
   int? humidity;
   List<Weather>? weather;
   double? speed;
-  int? deg;
+  double? deg;
   double? gust;
   int? clouds;
   double? pop;
@@ -141,11 +141,11 @@ class Lista {
         weather!.add(new Weather.fromJson(v));
       });
     }
-    speed = json['speed'];
-    deg = json['deg'];
-    gust = json['gust'];
+    speed = json['speed'].toDouble();
+    deg = json['deg'].toDouble();
+    gust = json['gust'].toDouble();
     clouds = json['clouds'];
-    pop = json['pop'];
+    pop = json['pop'].toDouble();
     rain = json['rain'];
   }
 
@@ -215,10 +215,10 @@ class FeelsLike {
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
   FeelsLike.fromJson(Map<String, dynamic> json) {
-    day = json['day'].toDouble();
-    night = json['night'].toDouble();
-    eve = json['eve'].toDouble();
-    morn = json['morn'].toDouble();
+    day = json['day'];
+    night = json['night'];
+    eve = json['eve'];
+    morn = json['morn'];
   }
 
   Map<String, dynamic> toJson() {

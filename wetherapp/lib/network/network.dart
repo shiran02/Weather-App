@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:wetherapp/ui/forecast_util.dart';
 import '../model/weather_forecast_model.dart';
-
+import '../util/forecast_util.dart';
+   
 class Network{
   Future<WetherForecastModel> getWeatherForecast({required String cityName}) async{
     
