@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wetherapp/model/weather_forecast_model.dart';
 import 'package:wetherapp/network/network.dart';
+import 'package:wetherapp/ui/bottom-view.dart';
 import 'package:wetherapp/ui/midView.dart';
+import 'package:wetherapp/util/forecast_util.dart';
 import 'package:wetherapp/widgets/textfield_widget.dart';
 
 void main() {
@@ -64,7 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 future: forecastObject, 
                 builder: (BuildContext context, AsyncSnapshot<WetherForecastModel> snapshot) {
                   if(snapshot.hasData){
-                    return midView(snapshot);
+                    return Column(
+                      children: [
+                        midView(snapshot),
+                         bottomView(snapshot, context),
+                      ],
+                    );
                   }else{  
                     return Container(
                       child: Center(child: CircularProgressIndicator(),),
@@ -75,6 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           ),
+
+          
         ],
       ),
     );
