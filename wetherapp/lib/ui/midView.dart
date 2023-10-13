@@ -24,6 +24,7 @@ Widget midView(AsyncSnapshot<WetherForecastModel> snapshot){
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        
         Text(
           "$city , $country",
           style: const TextStyle(

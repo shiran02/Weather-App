@@ -61,26 +61,29 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           textField2(),
           
-          Container(
-              child: FutureBuilder<WetherForecastModel>(
-                future: forecastObject, 
-                builder: (BuildContext context, AsyncSnapshot<WetherForecastModel> snapshot) {
-                  if(snapshot.hasData){
-                    return Column(
-                      children: [
-                        midView(snapshot),
-                         bottomView(snapshot, context),
-                      ],
-                    );
-                  }else{  
-                    return Container(
-                      child: Center(child: CircularProgressIndicator(),),
-                    );
-                  }
-                },
-                
-          ),
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+                child: FutureBuilder<WetherForecastModel>(
+                  future: forecastObject, 
+                  builder: (BuildContext context, AsyncSnapshot<WetherForecastModel> snapshot) {
+                    if(snapshot.hasData){
+                      return Column(
+                        children: [
+                          midView(snapshot),
+                           bottomView(snapshot, context),
+                        ],
+                      );
+                    }else{  
+                      return Container(
+                        child: Center(child: CircularProgressIndicator(),),
+                      );
+                    }
+                  },
+                  
+            ),
+          
+            ),
           ),
 
           
